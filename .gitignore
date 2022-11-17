@@ -39,7 +39,6 @@ bower_components
 build/Release
 
 # Dependency directories
-app/node_modules/
 jspm_packages/
 
 # Snowpack dependency directory (https://snowpack.dev/)
@@ -132,3 +131,4 @@ dist
 # Add New Files
 
 app/environments
+app/node_modules
