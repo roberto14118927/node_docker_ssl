@@ -96,6 +96,7 @@ router.get('/all', (req, res) => userController.user_get_all(req, res));
  *        description: Not Found
  */
 
+
 router.delete('/delete', (req, res) => userController.user_delete(req, res));
 
 
