@@ -44,6 +44,36 @@ const user_create = (req, res) => {
         });
 };
 
+const user_get_all = async (req, res) => {
+
+    const datas = await getUserRegister.User.findAll({
+        attributes: ['id','username', 'last_name', 'email', 'phone_number']
+    });
+
+    if (datas) {
+        res.send(datas)
+    } else {
+        return res.status(400).json({ error: 'No hay datos' });
+    }
+};
+
+const user_delete = async (req, res) => {
+
+    await getUserRegister.User.destroy({
+        where: { id: req.body.id }
+    })
+        .then(function (categoryDelete) {
+            if (categoryDelete === 1) {
+                res.send({ status: 'Dato eliminado' });
+            } else {
+                return res.status(400).json({ error: `Registro a eliminar, no encontrado` });
+            }
+        }, function (err) {
+            console.log(err);
+            return res.status(400).json({ error: err });
+        });
+
+};
 
 const send_email = (req, res) => {
 
@@ -82,4 +112,4 @@ const send_email = (req, res) => {
 }
 
 
-export const userController = { user_create };
+export const userController = { user_create, user_get_all, user_delete };
